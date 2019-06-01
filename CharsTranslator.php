@@ -1,6 +1,5 @@
 <?php
 
-
 class CharsTranslator
 {
     // Мапа для соотношения символов. Ключ символ на русском языке, значение - эквивалент на английском.
@@ -28,12 +27,14 @@ class CharsTranslator
     public function getWord()
     {
         foreach ($this->words as $word) {
-            $combinations = $this->getCombination();
-            $chars = str_split($word);
+            $combinations = $this->getCombination($word);
 
-            foreach ($combinations as $combination) {
-                yield $this->getTransformedWord($chars, $combination);
-            }
+            print_r($combinations);
+//            $chars = str_split($word);
+//
+//            foreach ($combinations as $combination) {
+//                yield $this->getTransformedWord($chars, $combination);
+//            }
         }
     }
 
@@ -43,19 +44,23 @@ class CharsTranslator
      * 1 - английская буква
      *
      * В примере "OАО" метод вернет 100, т.к. первая O - английская.
+     *
+     * @param string $word
+     * @return array
      */
-    private function getCombination() : array
+    private function getCombination(string $word) : array
     {
-        return [
-            '000',
-            '100',
-            '010',
-            '001',
-            '110',
-            '011',
-            '111',
-        ];
-        //TODO: тут надо сделать так, чтобы возвращал в двоичной системе всегда трехзначное число (пример: 001)
+        $wordLenght = mb_strlen($word);
+        $cyrleLength = pow(2, $wordLenght);
+        $format = "%'.0" . $wordLenght . "b\n";
+
+        $result = [];
+
+        for ($i = 0; $i < $cyrleLength; $i++) {
+            array_push($result, sprintf($format, $i));
+        }
+
+        return $result;
     }
 
     private function getTransformedWord(array $chars, string $combination) : string
@@ -63,15 +68,18 @@ class CharsTranslator
         $combinationArray = str_split($combination);
         $result = '';
 
+        print_r($combinationArray);
+        echo PHP_EOL;
+
         for ($i = 0; $i < count($combinationArray); $i++) {
             $number = $combinationArray[$i];
             $currentChar = $chars[$i];
 
             $key = $this->getNumberRelation($number);
 
-////            if (isset(self::CHARS_MAP[$key][$currentChar])) {
-//                $result .= self::CHARS_MAP[$key][$currentChar];
-////            }
+//            if (isset(self::CHARS_MAP[$key][$currentChar])) {
+                $result .= self::CHARS_MAP[$key][$currentChar];
+//            }
         }
 
         return $result;
