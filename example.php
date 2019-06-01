@@ -5,7 +5,10 @@ echo 'Start testing' . PHP_EOL;
 
 require_once __DIR__ . '/src/sunlikera/charreplacer/CharReplacer.php';
 require_once __DIR__ . '/src/sunlikera/charreplacer/dictionaries/DictionaryInterface.php';
-require_once __DIR__ . '/src/sunlikera/charreplacer/dictionaries/RuEngDictionary.php';
+require_once __DIR__ . '/src/sunlikera/charreplacer/dictionaries/BaseDictionary.php';
+require_once __DIR__ . '/src/sunlikera/charreplacer/dictionaries/source/RuEngDictionary.php';
+require_once __DIR__ . '/src/sunlikera/charreplacer/dictionaries/source/EngRuDictionary.php';
+require_once __DIR__ . '/src/sunlikera/charreplacer/dictionaries/DictionaryFactory.php';
 
 use sunlikera\charreplacer\CharReplacer;
 
@@ -14,6 +17,11 @@ $words = [
     'ОАО',
     'ЗАО',
 ];
+
+//$words = [
+//    'cat',
+//    'car',
+//];
 
 $charReplacer = new CharReplacer($words);
 

@@ -3,23 +3,26 @@
 namespace sunlikera\charreplacer;
 
 use Generator;
-use sunlikera\charreplacer\dictionaries\RuEngDictionary;
+use sunlikera\charreplacer\dictionaries\DictionaryFactory;
 
 class CharReplacer
 {
     private $words;
+    private $dictionary;
 
     /**
-     * CharReplacer конструктор.
+     * CharReplacer constructor.
      * @param array $words
+     * @param string $dictionary
      */
-    public function __construct(array $words)
+    public function __construct(array $words, string $dictionary = DictionaryFactory::DICTIONARY_RU_TYPE)
     {
         $this->words = $words;
+        $this->dictionary = DictionaryFactory::getDictionary($dictionary);
     }
 
     /**
-     * Генератор, который возвращает комбинацию слов.
+     * Method returns generator.
      * @return Generator
      */
     public function wordsGenerator()
@@ -35,7 +38,7 @@ class CharReplacer
     }
 
     /**
-     * Метод, который возвращает комбинацию слов.
+     * Method returns array with combinated words.
      * @return array
      */
     public function getWords()
@@ -50,11 +53,11 @@ class CharReplacer
     }
 
     /**
-     * Метод возвращает возможные варианты комбинации русских и английских букв.
-     * 0 - русская буква
-     * 1 - английская буква
+     * Method returns all kinds of possible variants combination russian and english chars.
+     * 0 - main char
+     * 1 - target char
      *
-     * В примере ("Cтаpт") 10010 - первый и предпоследний символ английский.
+     * In example ("Cтаpт") 10010 - first and prelast chars are target, couse it's russian word, but target symbols is english.
      *
      * @param string $word
      * @return array
@@ -75,7 +78,7 @@ class CharReplacer
     }
 
     /**
-     * Метод возвращет строку с замененными символами согласно комбинации.
+     * Method returns string with replaced chars accrossing by combination.
      * @param array $chars
      * @param string $combination
      * @return string
@@ -100,7 +103,7 @@ class CharReplacer
             $isTargetWord = $splitedCombination[$i];
 
             if ($isTargetWord) {
-                $charToResult = RuEngDictionary::getReplacedChar($charToResult);
+                $charToResult = $this->dictionary->getReplacedChar($charToResult);
             }
 
             $result .= $charToResult;
