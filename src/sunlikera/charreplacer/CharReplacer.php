@@ -1,6 +1,8 @@
 <?php
 
-class CharsTranslator
+namespace sunlikera\charreplacer;
+
+class CharReplaser
 {
     // Мапа для соотношения символов. Ключ символ на русском языке, значение - эквивалент на английском.
     const CHARS_MAP = [
@@ -51,7 +53,7 @@ class CharsTranslator
      * 0 - русская буква
      * 1 - английская буква
      *
-     * В примере 100 - первый символ английский.
+     * В примере 10010 - первый и предпоследний символ английский.
      *
      * @param string $word
      * @return array

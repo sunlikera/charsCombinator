@@ -3,7 +3,7 @@
 system('clear');
 echo 'Start testing' . PHP_EOL;
 
-require 'CharsTranslator.php';
+require 'src/sunlikera/charreplacer/CharReplacer.php';
 
 $words = [
     'ООО',
@@ -11,7 +11,7 @@ $words = [
     'ЗАО',
 ];
 
-$charsTranslator = new CharsTranslator($words);
+$charsTranslator = new CharReplaser($words);
 
 foreach ($charsTranslator->wordsGenerator() as $word) {
     print_r($word);

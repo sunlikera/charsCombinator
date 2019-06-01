@@ -1,0 +1,13 @@
+{
+    "name": "sunlikera/charreplacer",
+    "description": "Returns replaced words with similar chars",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amosov Stas",
+            "email": "amosov-stas@mail.ru"
+        }
+    ],
+    "require": {}
+}
