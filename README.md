@@ -1,4 +1,4 @@
-###### Char replacer
+# Char replacer
 
 This library returns combination all words with all kinds of similar english chars.
 
