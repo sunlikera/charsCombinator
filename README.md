@@ -7,12 +7,16 @@ in word "Хай" char "Х" can be "X" in english and char "а" can be similar ch
 
 You can initialize CharReplacer and get all combinations:
 
-`$charReplacer = new CharReplacer(['Хай', 'Привет']);
-$allKindsOfCombination = $charReplacer->getWords();`
+```php
+$charReplacer = new CharReplacer(['Хай', 'Привет']);
+$allKindsOfCombination = $charReplacer->getWords();
+```
 
 Or you can use this in cycle:
 
-`$charReplacer = new CharReplacer(['Хай', 'Привет']);
+```php
+$charReplacer = new CharReplacer(['Хай', 'Привет']);
 foreach ($charReplacer->wordsGenerator() as $word) {
     //do smt with $word
-}`
+}
+```
