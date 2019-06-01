@@ -5,7 +5,7 @@ namespace sunlikera\charreplacer\dictionaries;
 class RuEngDictionary implements DictionaryInterface
 {
     // Ключ на русском, значение на английском
-    const CHARS_MAP = [
+    private const CHARS_MAP = [
         'О' => 'О',
         'А' => 'А',
         'Е' => 'Е',
