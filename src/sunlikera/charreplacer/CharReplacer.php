@@ -2,14 +2,10 @@
 
 namespace sunlikera\charreplacer;
 
-class CharReplaser
-{
-    // Мапа для соотношения символов. Ключ символ на русском языке, значение - эквивалент на английском.
-    const CHARS_MAP = [
-        'О' => 'О',
-        'А' => 'А'
-    ];
+use sunlikera\charreplacer\dictionaries\RuEngDictionary;
 
+class CharReplacer
+{
     private $words;
 
     public function __construct($words)
@@ -91,7 +87,7 @@ class CharReplaser
             $isTargetWord = $splitedCombination[$i];
 
             if ($isTargetWord) {
-                $charToResult = (self::CHARS_MAP[$charToResult]) ?? $charToResult;
+                $charToResult = (RuEngDictionary::getReplacedChar($charToResult)) ?? $charToResult;
             }
 
             $result .= $charToResult;
