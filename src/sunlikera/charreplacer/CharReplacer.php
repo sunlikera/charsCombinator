@@ -2,13 +2,18 @@
 
 namespace sunlikera\charreplacer;
 
+use Generator;
 use sunlikera\charreplacer\dictionaries\RuEngDictionary;
 
 class CharReplacer
 {
     private $words;
 
-    public function __construct($words)
+    /**
+     * CharReplacer конструктор.
+     * @param array $words
+     */
+    public function __construct(array $words)
     {
         $this->words = $words;
     }
@@ -87,7 +92,7 @@ class CharReplacer
             $isTargetWord = $splitedCombination[$i];
 
             if ($isTargetWord) {
-                $charToResult = (RuEngDictionary::getReplacedChar($charToResult)) ?? $charToResult;
+                $charToResult = RuEngDictionary::getReplacedChar($charToResult);
             }
 
             $result .= $charToResult;

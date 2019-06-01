@@ -21,10 +21,10 @@ class RuEngDictionary implements DictionaryInterface
 
     /**
      * @param string $charToReplace
-     * @return string|bool
+     * @return string
      */
-    public function getReplacedChar(string $charToReplace)
+    public static function getReplacedChar(string $charToReplace)
     {
-        return isset(self::CHARS_MAP[$charToReplace]) ? self::CHARS_MAP[$charToReplace] : false ;
+        return isset(self::CHARS_MAP[$charToReplace]) ? self::CHARS_MAP[$charToReplace] : $charToReplace ;
     }
 }
