@@ -4,10 +4,18 @@ namespace sunlikera\charreplacer;
 
 use Generator;
 use sunlikera\charreplacer\dictionaries\DictionaryFactory;
+use sunlikera\charreplacer\dictionaries\DictionaryInterface;
 
 class CharReplacer
 {
+    /**
+     * @var array
+     */
     private $words;
+
+    /**
+     * @var DictionaryInterface
+     */
     private $dictionary;
 
     /**
@@ -17,6 +25,7 @@ class CharReplacer
      */
     public function __construct(array $words, string $dictionary = DictionaryFactory::DICTIONARY_RU_TYPE)
     {
+        //TODO: fix when $words like this ("word anotherWord"). Create individual service class for this things.
         $this->words = $words;
         $this->dictionary = DictionaryFactory::getDictionary($dictionary);
     }
