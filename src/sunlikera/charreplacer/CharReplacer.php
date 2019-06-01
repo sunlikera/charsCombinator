@@ -83,9 +83,17 @@ class CharReplacer
     private function getTransformedWord(array $chars, string $combination) : string
     {
         $result = '';
+        if (empty($chars) || empty($combination)) {
+            return $result;
+        }
+
         //очищаем от спецсимволов
         $combination = preg_replace( '/[^0-9]/', '', $combination);
         $splitedCombination = str_split($combination);
+
+        if (count($splitedCombination) != count($chars)) {
+            return '';
+        }
 
         for ($i = 0; $i < count($splitedCombination); $i++) {
             $charToResult = $chars[$i];
