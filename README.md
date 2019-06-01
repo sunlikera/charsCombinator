@@ -1,4 +1,18 @@
-###### Пока в разработке.
+###### Char replacer
 
-Возвращает все возможные комбинации английских символов в строке, состоящей из кириллицы.
-Для примера в строке "КОТ" могут все символы быть английскими или часть из них.
+This library returns combination all words with all kinds of similar english chars.
+
+For examle:
+in word "Хай" char "Х" can be "X" in english and char "а" can be similar char "a" in english.
+
+You can initialize CharReplacer and get all combinations:
+
+`$charReplacer = new CharReplacer(['Хай', 'Привет']);
+$allKindsOfCombination = $charReplacer->getWords();`
+
+Or you can use this in cycle:
+
+`$charReplacer = new CharReplacer(['Хай', 'Привет']);
+foreach ($charReplacer->wordsGenerator() as $word) {
+    //do smt with $word
+}`

@@ -17,6 +17,13 @@ class RuEngDictionary implements DictionaryInterface
         'С' => 'C',
         'В' => 'B',
         'М' => 'M',
+        'о' => 'o',
+        'а' => 'a',
+        'е' => 'e',
+        'р' => 'p',
+        'к' => 'k',
+        'х' => 'x',
+        'с' => 'c',
     ];
 
     /**
