@@ -7,13 +7,15 @@ require 'CharsTranslator.php';
 
 $words = [
     'ООО',
-    'ОАОО',
-    'ЗАООО',
+    'ОАО',
+    'ЗАО',
 ];
 
 $charsTranslator = new CharsTranslator($words);
 
-foreach ($charsTranslator->getWord() as $word) {
+foreach ($charsTranslator->wordsGenerator() as $word) {
     print_r($word);
     echo PHP_EOL;
 }
+
+print_r($charsTranslator->getWords());

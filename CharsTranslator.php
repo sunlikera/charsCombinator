@@ -4,14 +4,8 @@ class CharsTranslator
 {
     // Мапа для соотношения символов. Ключ символ на русском языке, значение - эквивалент на английском.
     const CHARS_MAP = [
-        'rus' => [
-            'О' => 'O',
-            'А' => 'A',
-        ],
-        'eng' => [
-            'O' => 'О',
-            'A' => 'А'
-        ],
+        'О' => 'О',
+        'А' => 'А'
     ];
 
     private $words;
@@ -22,20 +16,34 @@ class CharsTranslator
     }
 
     /**
-     * @return \Generator
+     * Генератор, который возвращает комбинацию слов.
+     * @return Generator
      */
-    public function getWord()
+    public function wordsGenerator()
     {
         foreach ($this->words as $word) {
             $combinations = $this->getCombination($word);
+            $chars = preg_split('//u', $word, -1, PREG_SPLIT_NO_EMPTY);
 
-            print_r($combinations);
-//            $chars = str_split($word);
-//
-//            foreach ($combinations as $combination) {
-//                yield $this->getTransformedWord($chars, $combination);
-//            }
+            foreach ($combinations as $combination) {
+                yield $this->getTransformedWord($chars, $combination);
+            }
         }
+    }
+
+    /**
+     * Метод, который возвращает комбинацию слов.
+     * @return array
+     */
+    public function getWords()
+    {
+        $result = [];
+
+        foreach ($this->wordsGenerator() as $word) {
+            array_push($result, $word);
+        }
+
+        return $result;
     }
 
     /**
@@ -43,7 +51,7 @@ class CharsTranslator
      * 0 - русская буква
      * 1 - английская буква
      *
-     * В примере "OАО" метод вернет 100, т.к. первая O - английская.
+     * В примере 100 - первый символ английский.
      *
      * @param string $word
      * @return array
@@ -63,34 +71,30 @@ class CharsTranslator
         return $result;
     }
 
+    /**
+     * Метод возвращет строку с замененными символами согласно комбинации.
+     * @param array $chars
+     * @param string $combination
+     * @return string
+     */
     private function getTransformedWord(array $chars, string $combination) : string
     {
-        $combinationArray = str_split($combination);
         $result = '';
+        //очищаем от спецсимволов
+        $combination = preg_replace( '/[^0-9]/', '', $combination);
+        $splitedCombination = str_split($combination);
 
-        print_r($combinationArray);
-        echo PHP_EOL;
+        for ($i = 0; $i < count($splitedCombination); $i++) {
+            $charToResult = $chars[$i];
+            $isTargetWord = $splitedCombination[$i];
 
-        for ($i = 0; $i < count($combinationArray); $i++) {
-            $number = $combinationArray[$i];
-            $currentChar = $chars[$i];
+            if ($isTargetWord) {
+                $charToResult = (self::CHARS_MAP[$charToResult]) ?? $charToResult;
+            }
 
-            $key = $this->getNumberRelation($number);
-
-//            if (isset(self::CHARS_MAP[$key][$currentChar])) {
-                $result .= self::CHARS_MAP[$key][$currentChar];
-//            }
+            $result .= $charToResult;
         }
 
         return $result;
-    }
-
-    /**
-     * @param $num
-     * @return string
-     */
-    private function getNumberRelation($num)
-    {
-        return ($num == 0) ? 'rus' : 'eng';
     }
 }
