@@ -11,10 +11,11 @@ class DictionaryFactory
     const DICTIONARY_ENG_TYPE = 'eng';
 
     /**
+     * Method returns type of dictionary.
      * @param string $type
-     * @return EngRuDictionary|RuEngDictionary
+     * @return DictionaryInterface
      */
-    public static function getDictionary($type = '')
+    public static function getDictionary($type = '') :DictionaryInterface
     {
         switch ($type) {
             case self::DICTIONARY_RU_TYPE:
