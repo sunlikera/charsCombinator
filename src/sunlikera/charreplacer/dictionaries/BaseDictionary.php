@@ -8,9 +8,9 @@ abstract class BaseDictionary implements DictionaryInterface
 
     /**
      * @param string $charToReplace
-     * @return mixed|string§
+     * @return string
      */
-    public function getReplacedChar(string $charToReplace)
+    public function getReplacedChar(string $charToReplace) :string
     {
         return isset(self::CHARS_MAP[$charToReplace]) ? self::CHARS_MAP[$charToReplace] : $charToReplace ;
     }

@@ -8,5 +8,5 @@ interface DictionaryInterface
      * @param string $charToReplace
      * @return string
      */
-    public function getReplacedChar(string $charToReplace);
+    public function getReplacedChar(string $charToReplace) :string;
 }
