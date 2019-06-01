@@ -90,7 +90,6 @@ class CharReplacer
             return $result;
         }
 
-        //очищаем от спецсимволов
         $combination = preg_replace( '/[^0-9]/', '', $combination);
         $splitedCombination = str_split($combination);
 
