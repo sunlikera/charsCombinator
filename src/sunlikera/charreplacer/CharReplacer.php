@@ -34,7 +34,7 @@ class CharReplacer
      * Method returns generator.
      * @return Generator
      */
-    public function wordsGenerator()
+    public function wordsGenerator() :Generator
     {
         foreach ($this->words as $word) {
             $combinations = $this->getCombination($word);
@@ -50,7 +50,7 @@ class CharReplacer
      * Method returns array with combinated words.
      * @return array
      */
-    public function getWords()
+    public function getWords() :array
     {
         $result = [];
 
