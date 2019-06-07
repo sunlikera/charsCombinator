@@ -87,7 +87,7 @@ class CharReplacer
     }
 
     /**
-     * Method returns string with replaced chars accrossing by combination.
+     * Method returns string with replaced chars according by combination.
      * @param array $chars
      * @param string $combination
      * @return string
