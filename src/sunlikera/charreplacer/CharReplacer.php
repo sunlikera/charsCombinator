@@ -102,7 +102,7 @@ class CharReplacer
         $combination = preg_replace( '/[^0-9]/', '', $combination);
         $splitedCombination = str_split($combination);
 
-        if (count($splitedCombination) != count($chars)) {
+        if (count($splitedCombination) !== count($chars)) {
             return '';
         }
 
